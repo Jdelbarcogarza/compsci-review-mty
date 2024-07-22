@@ -2,12 +2,12 @@
 
 interface Props {
   title: string;
-  publishedAt: Date;
   description: string
+  metric: number;
 }
 
 
-const {title, publishedAt, description} = Astro.props
+const {title, description, metric} = Astro.props
 
 import formatDate from "@/utils/formatDate";
 
@@ -46,6 +46,6 @@ import formatDate from "@/utils/formatDate";
   </div>
 
   <p class="truncate text-xl tabular-nums slashed-zero">
-    3440
+    {metric}
   </p>
 </div>
