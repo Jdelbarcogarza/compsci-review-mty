@@ -2,6 +2,7 @@
 import { CollectionEntry, getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import formatDate from "@/utils/formatDate";
+import LikeButton from "@/components/LikeButton.astro";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("posts");
@@ -33,55 +34,11 @@ const { Content } = await post.render();
 		<hr class="border-neutral-600" />
 		<div>
 			<p class="text-lg text-neutral-200 md:text-xl">
-				¿Te gustó lo que leíste o te resultó útil lo que encontaste?
+				¿Te gustó lo que leíste o te resultó útil esta página?
 			</p>
 
-			<button
-				id="likeBtn"
-				class={"inline-flex border border-neutral-800 rounded p-1 items-center transition-all duration-200 ease-in-out mt-3 active:scale-95"}
-			>
-				<span class="mr-1">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="w-4 h-4"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="lucide lucide-heart"
-						><path
-							d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-						></path></svg
-					>
-				</span>
-				Deja tu like
-			</button>
+      <LikeButton className="mt-3" />
+			
 		</div>
 	</main>
-
-	<script>
-		const btn = document.getElementById("likeBtn");
-		if (btn) {
-			const handleClick = () => {
-				btn.className =
-					"inline-flex border border-neutral-800 rounded p-1 items-center transition-all duration-200 ease-in-out mt-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white transition-all duration-300";
-
-				// Change the SVG fill
-				const svg = btn.querySelector("svg");
-				if (svg) {
-					svg.setAttribute("fill", "currentColor");
-					// Add animation classes
-					svg.classList.add("animate-bounce");
-					btn.querySelector("span")!.classList.add("animate-pulse");
-				}
-
-				// Optionally, remove the event listener to prevent further clicks
-				btn.removeEventListener("click", handleClick);
-			};
-
-			btn.addEventListener("click", handleClick);
-		}
-	</script>
 </Layout>
