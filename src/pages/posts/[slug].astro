@@ -1,19 +1,21 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content"
+import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import formatDate from "@/utils/formatDate";
+import LikeButton from "@/components/LikeButton.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
+	const posts = await getCollection("posts");
 
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
 }
 
 type Props = {
-  post: CollectionEntry<"posts">;
+	post: CollectionEntry<"posts">;
 };
 
 const { post } = Astro.props;
@@ -21,14 +23,23 @@ const { Content } = await post.render();
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
-  <main class="post mx-auto flex w-full max-w-prose flex-col gap-4">
-    <header role="presentation">
-      <h1 class="text-md">
-        {post.data.title} - {formatDate(post.data.publishedAt)}
-      </h1>
-      <p class="italic">{post.data.description}</p>
-    </header>
+	<main class="post mx-auto flex w-full max-w-prose flex-col gap-4">
+		<header role="presentation">
+			<h1 class="text-md">
+				{post.data.title} - {formatDate(post.data.publishedAt)}
+			</h1>
+			<p class="italic">{post.data.description}</p>
+		</header>
 
-    <Content />
-  </main>
+		<Content />
+		<hr class="border-neutral-600" />
+		<div>
+			<p class="text-lg text-neutral-200 md:text-xl">
+				¿Te gustó lo que leíste o te resultó útil esta página?
+			</p>
+
+      <LikeButton className="mt-3" />
+			
+		</div>
+	</main>
 </Layout>

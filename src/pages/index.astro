@@ -5,17 +5,21 @@ import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import SocialLinks from "@/components/SocialLinks.astro";
 import PostCard from "@/components/PostCard.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
+import ProjectCard from "@/components/PopularPost.astro";
 import Link from "@/components/shared/Link.astro";
 import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
 
 import presentation from "@/data/presentation";
 import projects from "@/data/projects";
 import KPICard from "@/components/KPICard.astro";
+import LikeButton from "@/components/LikeButton.astro";
 
 const posts = (await getCollection("posts")).sort(function (first, second) {
 	return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
 });
+
+
+const popularPosts = posts.filter((post) => post.data.isPopular === true);
 ---
 
 <Layout>
@@ -59,10 +63,14 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 					<br />
 					<br />
 					Esta página contiene relatos de estudiantes egresados de la carrera de
-					Ing. en Tecnologías Computacionales. El objetivo es que TU, la persona
-					visitando esta página, llegues a tus propias conclusiones sobre lo que
-					es estudiar esta carrera en la mejor universidad del país y conozcas la
-					historia de personas que ya han recorrido un camino que tu estás por recorrer.
+					Ing. en Tecnologías Computacionales y afines. El objetivo es que TU, la
+					persona visitando esta página, llegues a tus propias conclusiones sobre
+					lo que es estudiar una carrera en software (o relacionada a la <a
+						class="underline underline-offset-2"
+						href="https://www.investopedia.com/terms/t/technology_sector.asp"
+						>"tech industry"</a
+					>) aquí en México y conozcas la historia de personas que ya han
+					recorrido un camino que tu estás por recorrer.
 				</h2>
 
 				<SocialLinks />
@@ -74,16 +82,42 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 				<h3 class="text-lg text-neutral-100">Métricas</h3>
 			</header>
 			<section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+				<KPICard title="Posts subidos" metric={2} description="This is awesome">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-4 h-4"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-sticky-note"
+						><path
+							d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8Z"
+						></path><path d="M15 3v4a2 2 0 0 0 2 2h4"></path></svg
+					>
+				</KPICard>
 				<KPICard
-					title="Posts subidos"
-					metric={2}
+					title="Likes totales"
+					metric={"TBD"}
 					description="This is awesome"
-				/>
-				<KPICard
-					title="Personas que encontraron esto útil"
-					metric={4}
-					description="This is awesome"
-				/>
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-4 h-4"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-heart"
+						><path
+							d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+						></path></svg
+					>
+				</KPICard>
 			</section>
 		</article>
 
@@ -114,22 +148,29 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 		<article class="flex flex-col gap-8">
 			<header class="flex w-full flex-row justify-between gap-2">
 				<h3 class="text-lg text-neutral-100">
-					Destacados ({projects.length})
+					Destacados ({popularPosts.length})
 				</h3>
 			</header>
-			{projects.length === 0 && <p>Oops, I must work^^^^^</p>}
+			{popularPosts.length === 0 && <p>Aún hay mucho por contar...</p>}
 
 			<section class="flex flex-col gap-4">
 				{
-					projects.length !== 0 &&
-						projects.map((project) => <ProjectCard {...project} />)
+					popularPosts.length !== 0 &&
+						popularPosts.map((popularPost) => <ProjectCard post={popularPost} />)
 				}
 			</section>
 		</article>
 
+		<div>
+			<p class="text-lg text-neutral-200 md:text-xl">
+				¿Te gustó lo que leíste o te resultó útil lo que encontaste?
+			</p>
+			<LikeButton className="mt-3" />
+		</div>
+
 		<article class="flex flex-col gap-8">
 			<header class="flex w-full flex-row justify-between gap-2">
-				<h3 class="text-lg text-neutral-100">Get in touch</h3>
+				<h3 class="text-lg text-neutral-100">Contacto</h3>
 			</header>
 			<p>
 				Email me at <Link
