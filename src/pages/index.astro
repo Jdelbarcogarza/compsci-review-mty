@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import SocialLinks from "@/components/SocialLinks.astro";
 import PostCard from "@/components/PostCard.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
+import ProjectCard from "@/components/PopularPost.astro";
 import Link from "@/components/shared/Link.astro";
 import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
 
@@ -17,6 +17,9 @@ import LikeButton from "@/components/LikeButton.astro";
 const posts = (await getCollection("posts")).sort(function (first, second) {
 	return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
 });
+
+
+const popularPosts = posts.filter((post) => post.data.isPopular === true);
 ---
 
 <Layout>
@@ -96,7 +99,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 					>
 				</KPICard>
 				<KPICard
-					title="Lectores interesados"
+					title="Likes totales"
 					metric={"TBD"}
 					description="This is awesome"
 				>
@@ -145,15 +148,15 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 		<article class="flex flex-col gap-8">
 			<header class="flex w-full flex-row justify-between gap-2">
 				<h3 class="text-lg text-neutral-100">
-					Destacados ({projects.length})
+					Destacados ({popularPosts.length})
 				</h3>
 			</header>
-			{projects.length === 0 && <p>Oops, I must work^^^^^</p>}
+			{popularPosts.length === 0 && <p>Aún hay mucho por contar...</p>}
 
 			<section class="flex flex-col gap-4">
 				{
-					projects.length !== 0 &&
-						projects.map((project) => <ProjectCard {...project} />)
+					popularPosts.length !== 0 &&
+						popularPosts.map((popularPost) => <ProjectCard post={popularPost} />)
 				}
 			</section>
 		</article>

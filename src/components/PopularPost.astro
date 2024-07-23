@@ -1,16 +1,19 @@
 ---
 import type { Project } from "@/data/projects";
+import formatDate from "@/utils/formatDate";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
-type Props = Project;
+type Props = {
+	post: CollectionEntry<"posts">;
+};
 
-const { title, techs, link, isComingSoon } = Astro.props;
+const { post } = Astro.props
 
-const formatTechs = (values: string[]) =>
-  values.toString().replaceAll(",", " • ");
 ---
 
 <>
-  {
+  <!-- {
     isComingSoon && (
       <div class="t group flex w-full flex-col justify-between gap-2 rounded-md border border-neutral-700 p-4 md:flex-row md:items-center">
         <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
@@ -21,18 +24,17 @@ const formatTechs = (values: string[]) =>
         <p class="w-fit rounded-md bg-neutral-900 px-4 py-1">Soon</p>
       </div>
     )
-  }
+  } -->
 
-  {
-    !isComingSoon && (
+  
       <a
         class="group flex w-full cursor-pointer flex-col justify-between gap-2 rounded-md border border-neutral-700 p-4 transition-all duration-300 hover:-translate-y-2 hover:border-neutral-400 md:flex-row md:items-center"
-        href={link}
+        href={post.slug}
         target="_blank"
       >
         <div class="flex flex-col gap-4 md:flex-row md:items-center">
-          <p class="text-neutral-100">{title}</p>
-          <p>{formatTechs(techs)}</p>
+          <p class="text-neutral-100">{post.data.title}</p>
+          <p>{formatDate(post.data.publishedAt)}</p>
         </div>
 
         <svg
@@ -56,6 +58,4 @@ const formatTechs = (values: string[]) =>
           />
         </svg>
       </a>
-    )
-  }
 </>
