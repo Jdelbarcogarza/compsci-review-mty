@@ -11,7 +11,7 @@ Before you do there are some rules you'll need to follow so we keep this resourc
 
 1. **Give advice**. Even though your story may or may not  be overall positive or good, make sure to end with a personal reflection or advice. This is why people come to visit
 2. **Keep self promotion to a minimum**. We are all engineers and we build cool stuff, but we are not advertising ourselves or our work here, we want to share knowledge to the ones that don't know. That is *incoming college students* or people wanting to know more about what is studying CS is all about. 
-3. **Keep a relaxed respectful language**. I don't think that you need bad words to share your an important life experience WHEN YOU ARE WRITING IT. Lets keep it chill and family friendly.
+3. **Keep a relaxed respectful language**. I don't think that you need bad words to share an important life experience when writing it. So lets keep it chill and family friendly.
 4. **OPTIONAL (and probably recommended): Stay anonymous**. I know the repo in Github is public, but is different to share your student number, full name, or even your teacher's names on the deployed site. Don't overshare and focus on the message you are trying to communicate.
 
 
@@ -55,4 +55,4 @@ Finally, if I merge your PR you'll receive a notification through your Github's 
 Look for your post on the deployed site https://csreview.pages.dev/
 
 
-### Happy coding ✨
+### Happy coding & story writing ✨
