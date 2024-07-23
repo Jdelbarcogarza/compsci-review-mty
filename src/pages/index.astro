@@ -44,17 +44,9 @@ const popularPosts = posts.filter((post) => post.data.isPopular === true);
 					{presentation.title}
 				</h1>
 
-				<!-- 
-        original
-        <h2
-          class="w-auto  leading-6"
-          set:html={convertAsteriskToStrongTag(presentation.description)}
-        >        
--->
-
 				<h2 class="w-auto leading-6">
 					Cuando estaba investigando en internet sobre lo que sería estudiar
-					Ciencias Computacionales (la carrera del futuro) en la mejor
+					<span class="text-indigo-400">Ciencias Computacionales</span> (<span class="italic">la carrera del futuro</span>) en la mejor
 					universidad privada de México, antes de tomar la decisión más
 					importante de mi vida me hubiera gustado poder escuchar o leer sobre
 					lo que realmente es la carrera con testimonios de sus estudiantes.
@@ -62,11 +54,11 @@ const popularPosts = posts.filter((post) => post.data.isPopular === true);
 					profesionalmente (ya graduado puedo decir que sí lo fue).
 					<br />
 					<br />
-					Esta página contiene relatos de estudiantes egresados de la carrera de
-					Ing. en Tecnologías Computacionales y afines. El objetivo es que TU, la
+					Esta página contiene <span class="text-indigo-400">relatos de estudiantes egresados</span> de la carrera de
+					Ing. en Tecnologías Computacionales y afines. El objetivo es que <span class="text-indigo-400">TU</span>, la
 					persona visitando esta página, llegues a tus propias conclusiones sobre
 					lo que es estudiar una carrera en software (o relacionada a la <a
-						class="underline underline-offset-2"
+						class="underline underline-offset-2 text-indigo-400 italic"
 						href="https://www.investopedia.com/terms/t/technology_sector.asp"
 						>"tech industry"</a
 					>) aquí en México y conozcas la historia de personas que ya han

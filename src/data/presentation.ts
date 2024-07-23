@@ -6,7 +6,6 @@ type Social = {
 type Presentation = {
 	mail: string;
 	title: string;
-	description: string;
 	socials: Social[];
 	profile?: string;
 };
@@ -14,7 +13,6 @@ type Presentation = {
 const presentation: Presentation = {
 	mail: "Compsci review",
 	title: "Estudiar una carrera en software 💻",
-	description: "",
 	socials: [
 		{
 			label: "X",
