@@ -59,10 +59,14 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 					<br />
 					<br />
 					Esta página contiene relatos de estudiantes egresados de la carrera de
-					Ing. en Tecnologías Computacionales. El objetivo es que TU, la persona
-					visitando esta página, llegues a tus propias conclusiones sobre lo que
-					es estudiar esta carrera en la mejor universidad del país y conozcas la
-					historia de personas que ya han recorrido un camino que tu estás por recorrer.
+					Ing. en Tecnologías Computacionales y afines. El objetivo es que TU, la
+					persona visitando esta página, llegues a tus propias conclusiones sobre
+					lo que es estudiar una carrera en software (o relacionada a la <a
+						class="underline underline-offset-2"
+						href="https://www.investopedia.com/terms/t/technology_sector.asp"
+						>"tech industry"</a
+					>) aquí en México y conozcas la historia de personas que ya han
+					recorrido un camino que tu estás por recorrer.
 				</h2>
 
 				<SocialLinks />
@@ -76,7 +80,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 			<section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
 				<KPICard
 					title="Posts subidos"
-					metric={2}
+					metric={posts.length}
 					description="This is awesome"
 				/>
 				<KPICard

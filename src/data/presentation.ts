@@ -13,7 +13,7 @@ type Presentation = {
 
 const presentation: Presentation = {
 	mail: "Compsci review",
-	title: "Estudiar una carrera de software 💻",
+	title: "Estudiar una carrera en software 💻",
 	description: "",
 	socials: [
 		{
