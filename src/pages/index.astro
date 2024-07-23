@@ -75,16 +75,42 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 				<h3 class="text-lg text-neutral-100">Métricas</h3>
 			</header>
 			<section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
-				<KPICard
-					title="Posts subidos"
-					metric={2}
-					description="This is awesome"
-				/>
+				<KPICard title="Posts subidos" metric={2} description="This is awesome">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-4 h-4"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-sticky-note"
+						><path
+							d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8Z"
+						></path><path d="M15 3v4a2 2 0 0 0 2 2h4"></path></svg
+					>
+				</KPICard>
 				<KPICard
 					title="Personas que encontraron esto útil"
 					metric={4}
 					description="This is awesome"
-				/>
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-4 h-4"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-heart"
+						><path
+							d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+						></path></svg
+					>
+				</KPICard>
 			</section>
 		</article>
 
@@ -127,7 +153,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 				}
 			</section>
 		</article>
-		
+
 		<div>
 			<p class="text-lg text-neutral-200 md:text-xl">
 				¿Te gustó lo que leíste o te resultó útil lo que encontaste?
@@ -148,6 +174,5 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 
 			<SocialLinks />
 		</article>
-
 	</main>
 </Layout>
