@@ -7,18 +7,41 @@ import SocialLinks from "@/components/SocialLinks.astro";
 import PostCard from "@/components/PostCard.astro";
 import ProjectCard from "@/components/PopularPost.astro";
 import Link from "@/components/shared/Link.astro";
-import convertAsteriskToStrongTag from "@/utils/convertAsteriskToStrongTag";
 
 import presentation from "@/data/presentation";
-import projects from "@/data/projects";
 import KPICard from "@/components/KPICard.astro";
 import LikeButton from "@/components/LikeButton.astro";
+import { getClient } from "@umami/api-client";
 
 const posts = (await getCollection("posts")).sort(function (first, second) {
 	return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
 });
 
 const popularPosts = posts.filter((post) => post.data.isPopular === true);
+
+let totalLikes = 0;
+
+// client
+const client = getClient({
+	apiEndpoint: import.meta.env.UMAMI_API_CLIENT_ENDPOINT,
+	apiKey: import.meta.env.UMAMI_API_KEY,
+});
+
+const { ok, data, error } = await client.getWebsiteEvents(
+	import.meta.env.UMAMI_WEBSITE_ID,
+	{
+		startAt: new Date("July 22, 2024").getTime().toString(),
+		endAt: Date.now().toString(),
+		unit: "year",
+		timezone: "America/Mexico_City",
+	}
+);
+
+if (!ok) {
+	console.error("there was an error", error);
+}
+// Structure of response: [ { x: 'Website Likes', t: '2024-01-01', y: 6 } ]
+totalLikes = data[0].y
 ---
 
 <Layout>
@@ -95,7 +118,7 @@ const popularPosts = posts.filter((post) => post.data.isPopular === true);
 				</KPICard>
 				<KPICard
 					title="Likes totales"
-					metric={"TBD"}
+					metric={totalLikes}
 					description="This is awesome"
 				>
 					<svg
