@@ -28,9 +28,10 @@ Let me tell you how...
 
 To contribute to this repository you'll need to follow these next steps:
 
-1. create a MarkDown file inside the `/posts` directory
+1. The first step is to fork the repository, and after this clone it
+2. Create a MarkDown file inside the `/posts` directory
    1. NOTE: Give it a creative title so people want click on your post
-2. In the fontmatter section (the block in the `.md` contained by `---`) Add the following attributes as you see in the example below:
+3. In the fontmatter section (the block in the `.md` contained by `---`) Add the following attributes as you see in the example below:
 
 ```yml
 title: "The Power Of React Hooks"
@@ -47,8 +48,8 @@ description: ""
 slug: ""
 ```
 
-3. After you copy add the information about your post. Exit the fontmatter block and start writing in [Markdown](https://www.markdownguide.org/cheat-sheet/) format.
-4. After you are done writing, create a pull request to the `main` branch in Github and tag the creator of the repo [@Jdelbarcogarza](https://github.com/Jdelbarcogarza) as a reviewer for your PR. **Do note, I'll review your "code" but also I'll read your story. This is what it's all about :)**
+4. After you copy add the information about your post. Exit the fontmatter block and start writing in [Markdown](https://www.markdownguide.org/cheat-sheet/) format.
+5. After you are done writing, create a pull request to the `main` branch in Github and tag the creator of the repo [@Jdelbarcogarza](https://github.com/Jdelbarcogarza) as a reviewer for your PR. **Do note, I'll review your "code" but also I'll read your story. This is what it's all about :)**
 
 Finally, if I merge your PR you'll receive a notification through your Github's email, and you'll have officially contributed to an Open Source Project.
 
